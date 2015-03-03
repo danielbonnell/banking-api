@@ -4,7 +4,7 @@ development:
   encoding: unicode
   database: geezeo_development
   pool:     5
-  username: geezeo
+  username: 
   password:
   template: template0
 
@@ -14,7 +14,7 @@ test:
   encoding: unicode
   database: geezeo_test
   pool:     5
-  username: geezeo
+  username: 
   password:
   template: template0
 
