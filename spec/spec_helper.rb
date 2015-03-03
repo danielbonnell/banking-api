@@ -1,13 +1,13 @@
-require 'coveralls'
+require "coveralls"
 Coveralls.wear!
 
-ENV["RAILS_ENV"] ||= 'test'
-require 'spec_helper'
+ENV["RAILS_ENV"] ||= "test"
+require "spec_helper"
 require File.expand_path("../../config/environment", __FILE__)
-require 'rspec/rails'
-require File.join(File.dirname(__FILE__), 'support/factory_girl')
-require File.join(File.dirname(__FILE__), 'support/helpers/session_helpers')
-require 'capybara/rspec'
+require "rspec/rails"
+require File.join(File.dirname(__FILE__), "support/factory_girl")
+require File.join(File.dirname(__FILE__), "support/helpers/session_helpers")
+require "capybara/rspec"
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -24,7 +24,7 @@ RSpec.configure do |config|
     # config.disable_monkey_patching!
 
     if config.files_to_run.one?
-      config.default_formatter = 'doc'
+      config.default_formatter = "doc"
     end
 
     config.profile_examples = 10
