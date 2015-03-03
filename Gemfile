@@ -12,6 +12,8 @@ gem 'devise'
 gem 'foundation-rails'
 gem 'pg'
 gem 'puma'
+gem 'dotenv-rails'
+gem 'coveralls', require: false
 
 group :development do
   gem 'better_errors'
