@@ -12,6 +12,7 @@ gem 'devise'
 gem 'foundation-rails'
 gem 'pg'
 gem 'puma'
+gem 'dotenv-rails'
 
 group :development do
   gem 'better_errors'
