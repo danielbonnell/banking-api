@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :username,
-    presence: "Username can't be blank",
-    uniqueness: "Username already in use"
+            presence: "Username can't be blank",
+            uniqueness: "Username already in use"
   # validate :validate_username
   #
   # private
