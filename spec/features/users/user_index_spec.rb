@@ -1,7 +1,7 @@
 include Warden::Test::Helpers
 Warden.test_mode!
 
-feature 'User index page', %{
+feature "User index page", %{
   As an authenticated user, I want to see a list of my recent transactions and
   accounts with their balances, so I have an overview of my financial situation.
   Acceptance Criteria:
@@ -14,7 +14,7 @@ feature 'User index page', %{
     Warden.test_reset!
   end
 
-  scenario 'user sees own email address' do
+  scenario "user sees own email address" do
     user = FactoryGirl.create(:user)
     login_as(user, scope: :user)
     visit users_path

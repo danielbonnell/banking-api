@@ -1,30 +1,30 @@
-feature 'Sign in', %{
+feature "Sign in", %{
   As an authenticated user, I want to log in, so that I can use the app.
   Acceptance Criteria:
   * [X] - I can log in with a valid username and password.
   * [X] - I see an error if my credentials are invalid.
   * [ ] - I see an overview of my accounts if my credentials are valid.
   }, :devise do
-  scenario 'user cannot sign in if not registered' do
-    signin('test@example.com', 'please123')
-    expect(page).to have_content I18n.t 'devise.failure.not_found_in_database', authentication_keys: 'email'
+  scenario "user cannot sign in if not registered" do
+    signin("test@example.com", "please123")
+    expect(page).to have_content I18n.t "devise.failure.not_found_in_database", authentication_keys: "email"
   end
 
-  scenario 'user can sign in with valid credentials' do
+  scenario "user can sign in with valid credentials" do
     user = FactoryGirl.create(:user)
     signin(user.email, user.password)
-    expect(page).to have_content I18n.t 'devise.sessions.signed_in'
+    expect(page).to have_content I18n.t "devise.sessions.signed_in"
   end
 
-  scenario 'user cannot sign in with wrong email' do
+  scenario "user cannot sign in with wrong email" do
     user = FactoryGirl.create(:user)
-    signin('invalid@email.com', user.password)
-    expect(page).to have_content I18n.t 'devise.failure.not_found_in_database', authentication_keys: 'email'
+    signin("invalid@email.com", user.password)
+    expect(page).to have_content I18n.t "devise.failure.not_found_in_database", authentication_keys: "email"
   end
 
-  scenario 'user cannot sign in with wrong password' do
+  scenario "user cannot sign in with wrong password" do
     user = FactoryGirl.create(:user)
-    signin(user.email, 'invalidpass')
-    expect(page).to have_content I18n.t 'devise.failure.invalid', authentication_keys: 'email'
+    signin(user.email, "invalidpass")
+    expect(page).to have_content I18n.t "devise.failure.invalid", authentication_keys: "email"
   end
 end
