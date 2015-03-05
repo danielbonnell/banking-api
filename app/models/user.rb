@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   validates :username,
             presence: "Username can't be blank",
             uniqueness: "Username already in use"
-  def accounts
-    Account.new.find_all(self)
+
+  def account
+    Account.new
   end
 end
