@@ -1,16 +1,36 @@
-<div class="container">
-  <div class="row">
-    <h3>Users</h3>
-    <div class="column">
-      <table class="table">
-        <tbody>
-          <% @users.each do |user| %>
-            <tr>
-              <%= render user %>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+<div class="row full-width">
+  <div class="large-2 medium-3 columns full-height">
+    <ul class="side-nav">
+      <li><a href="#">Account Overview</a></li>
+      <li><a href="#">Spending Analysis</a></li>
+      <li><a href="#">Add Account</a></li>
+    </ul>
+  </div>
+
+  <div class="large-10 medium-9 columns full-height">
+    <ul class="accordion" data-accordion>
+      <% @accounts.each do |group| %>
+        <li class="accordion-navigation">
+          <a href="#panel1a"><%= group[0] %></a>
+          <div id="panel1a" class="content active">
+            <ul class="large-block-grid-4 medium-block-grid-3 small-block-grid-1">
+              <% group[1].each do |account| %>
+                <% unless account.empty? %>
+                  <li>
+                    <ul class="pricing-table">
+                      <li class="title"><%= account["name"] %></li>
+                      <li class="description"><%= account["account_type"] %></li>
+                      <li class="price"><%= number_to_currency(account["balance"]) %></li>
+                      <li class="bullet-item"><%= account["fi"]["name"] unless account["fi"].nil? %></li>
+                      <li class="cta-button"><a class="tiny button" href="#">View Account</a></li>
+                    </ul>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>
