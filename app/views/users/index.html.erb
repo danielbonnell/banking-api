@@ -1,5 +1,5 @@
 <div class="row full-width">
-  <div class="large-2 medium-3 columns full-height">
+  <div class="large-2 medium-3 columns full-height side-bar">
     <ul class="side-nav">
       <li><a href="#">Account Overview</a></li>
       <li><a href="#">Spending Analysis</a></li>
@@ -9,10 +9,10 @@
 
   <div class="large-10 medium-9 columns full-height">
     <ul class="accordion" data-accordion>
-      <% @accounts.each do |group| %>
+      <% @accounts.each_with_index do |group, i| %>
         <li class="accordion-navigation">
-          <a href="#panel1a"><%= group[0] %></a>
-          <div id="panel1a" class="content active">
+          <a href="#panel<%= i %>"><%= group[0] %></a>
+          <div id="panel<%= i %>" class="content <%= "active" if i == 0 %>">
             <ul class="large-block-grid-4 medium-block-grid-3 small-block-grid-1">
               <% group[1].each do |account| %>
                 <% unless account.empty? %>
