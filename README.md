@@ -10,7 +10,16 @@ This app allows a user to register an account and access the Geezeo API, provide
 Here is are some highlights of what I worked on each day.
 
 #### 03/04/15
-*
+* Added spec to test if accounts with balances appear on index page when user is authenticated
+* Added CSS to set width of rows to 100% of browser width and columns to 100% of browser height
+* Added RestClient and JSON gems
+* Eliminated ability to see other users
+* Eliminated acceptance tests for ability to see other users
+* Created layout for accounts index page
+* Created methods to retrieve account data from API as hash
+* Added API key to Travis CI as a repository setting
+* Added API key to Heroku
+* Deployed to Heroku
 
 #### 03/03/15
 * Set up generic Rails 4 app with Devise and Foundation using rails-omniauth generator
