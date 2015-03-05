@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-  require 'rest_client'
+  require "rest_client"
 
-  BASE_URI = "https://#{ENV["TOKEN"]}@sales.geezeo.com/api/v2"
+  BASE_URI = "https://#{ENV['TOKEN']}@sales.geezeo.com/api/v2"
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   def accounts
     api_call = JSON.parse(
-      RestClient.get "#{BASE_URI}/users/#{self.username}/accounts"
+      RestClient.get "#{BASE_URI}/users/#{username}/accounts"
     )["accounts"]
 
     output = {}
