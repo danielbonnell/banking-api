@@ -6,7 +6,6 @@ feature "User profile page", %{
   information is correct.
   Acceptance Criteria:
   * [X] - I can view my profile.
-  * [X] - I can"t view another user"s profile.
   }, :devise do
   after(:each) do
     Warden.test_reset!
@@ -18,14 +17,5 @@ feature "User profile page", %{
     visit user_path(user)
     expect(page).to have_content "User"
     expect(page).to have_content user.email
-  end
-
-  scenario "user cannot see another user's profile" do
-    me = FactoryGirl.create(:user)
-    other = FactoryGirl.create(:user, email: "other@example.com")
-    login_as(me, :scope => :user)
-    Capybara.current_session.driver.header "Referer", root_path
-    visit user_path(other)
-    expect(page).to have_content "Access denied."
   end
 end
