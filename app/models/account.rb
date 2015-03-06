@@ -68,4 +68,11 @@ class Account
     end
     output
   end
+
+  def transactions(user, page)
+    api_call = JSON.parse(
+      RestClient.get "#{BASE_URI}/users/#{user.username}/transactions?page=#{page}"
+    )
+    api_call["transactions"][0..9]
+  end
 end
