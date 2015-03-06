@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
             uniqueness: "Username already in use"
 
   def account
-    Account.new
+    @account ||= Account.new
   end
 end

@@ -7,6 +7,6 @@ class AccountsController < ApplicationController
   # end
   #
   def show
-    @account = Account.new.account(current_user, params[:id])
+    @account ||= Account.new.account(current_user, params[:id])
   end
 end
