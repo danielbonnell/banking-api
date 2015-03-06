@@ -20,6 +20,8 @@ Here is are some highlights of what I worked on each day.
 * Added test coverage for recent transactions and account balances
 * Deployed to Heroku
 * Made repository private until app is complete
+* Refactored overview partial, moved account overview charts into separate js file
+* Added 'gon' gem to pass data from users controller to account overview charts js file
 
 #### 03/04/15
 * Added spec to test if accounts with balances appear on index page when user is authenticated

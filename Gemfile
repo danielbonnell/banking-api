@@ -16,6 +16,7 @@ gem 'dotenv-rails'
 gem 'coveralls', require: false
 gem 'rest-client'
 gem 'json'
+gem 'gon'
 
 group :development do
   gem 'better_errors'

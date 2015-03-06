@@ -3,7 +3,9 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
-  end
+    gon.assets = @user.account.assets(@user)
+    gon.debts = @user.account.debts(@user)
+end
 
   def show
     @user = User.find(params[:id])
