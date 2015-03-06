@@ -10,6 +10,9 @@ This app allows a user to register an account and access a banking API, provided
 ## Change Log
 Here is are some highlights of what I worked on each day.
 
+#### 03/06/15
+* Refactored account model
+
 #### 03/05/15
 * Refactored 'user' model by moving account methods to new 'account' model
 * Styled account overview
