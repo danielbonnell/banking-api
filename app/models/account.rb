@@ -43,36 +43,23 @@ class Account
     )["meta"]
   end
 
-  def assets(user)
+  def balance(user, type)
     api_call = JSON.parse(
       RestClient.get "#{BASE_URI}/users/#{user.username}/networth"
-    )["assets"]
+    )[type]
 
     output = []
 
     api_call.each do |account|
       output << [account["name"], account["balance"].to_f]
     end
-    output
-  end
-
-  def debts(user)
-    api_call = JSON.parse(
-      RestClient.get "#{BASE_URI}/users/#{user.username}/networth"
-    )["debts"]
-
-    output = []
-
-    api_call.each do |account|
-      output << [account["name"], account["balance"].to_f]
-    end
+    
     output
   end
 
   def transactions(user, page)
-    api_call = JSON.parse(
+    JSON.parse(
       RestClient.get "#{BASE_URI}/users/#{user.username}/transactions?page=#{page}"
-    )
-    api_call["transactions"][0..9]
+    )["transactions"][0..9]
   end
 end

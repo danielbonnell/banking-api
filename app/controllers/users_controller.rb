@@ -3,12 +3,13 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
-    gon.assets = @user.account.assets(@user)
-    gon.debts = @user.account.debts(@user)
+    gon.assets = @user.account.balance(@user, "assets")
+    gon.debts = @user.account.balance(@user, "debts")
 end
 
   def show
     @user = User.find(params[:id])
+    
     unless @user == current_user
       redirect_to :back, :alert => "Access denied."
     end
