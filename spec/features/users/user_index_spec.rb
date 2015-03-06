@@ -19,7 +19,7 @@ feature "User index page", %{
     login_as(user, scope: :user)
     visit users_path
 
-    user.accounts.each do |account|
+    user.account.all(user).each do |account|
       expect(page).to have_content account[0]["name"] unless account[0].empty?
     end
   end
@@ -29,7 +29,7 @@ feature "User index page", %{
     login_as(user, scope: :user)
     visit users_path
 
-    user.accounts.each do |account|
+    user.account.all(user).each do |account|
       expect(page).to have_content account[0]["balance"] unless account[0].empty?
     end
   end
