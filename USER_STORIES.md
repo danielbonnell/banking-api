@@ -13,7 +13,6 @@ As an authenticated user, I want to log in, so that I can use the app.
 Acceptance Criteria:
 * [X] - I can log in with a valid username and password.
 * [X] - I see an error if my credentials are invalid.
-* [ ] - I see an overview of my accounts if my credentials are valid.
 
 As an authenticated user, I want to navigate to different areas of my account,
 so that I can see what information is available.
@@ -23,10 +22,10 @@ Acceptance Criteria:
 As an authenticated user, I want to see a list of my recent transactions and
 accounts with their balances, so I have an overview of my financial situation.
 Acceptance Criteria:
-* [ ] - I see all of my accounts listed on the dashboard.
-* [ ] - I see the balance of each account.
-* [ ] - I see a breakdown of my total available funds and or debts.
-* [ ] - I see a list of my most recent transactions.
+* [X] - I see all of my accounts listed on the dashboard.
+* [X] - I see the balance of each account.
+* [X] - I see a breakdown of my total available funds and or debts.
+* [X] - I see a list of my most recent transactions.
 
 As an authenticated user, I want to view a list of transactions for each
 account, so that I can analyze my spending habits from that account.
