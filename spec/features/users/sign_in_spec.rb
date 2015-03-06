@@ -3,7 +3,6 @@ feature "Sign in", %{
   Acceptance Criteria:
   * [X] - I can log in with a valid username and password.
   * [X] - I see an error if my credentials are invalid.
-  * [ ] - I see an overview of my accounts if my credentials are valid.
   }, :devise do
   scenario "user cannot sign in if not registered" do
     signin("test@example.com", "please123")

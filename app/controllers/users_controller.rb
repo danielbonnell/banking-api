@@ -3,7 +3,6 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
-    @accounts = @user.accounts
   end
 
   def show
