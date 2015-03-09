@@ -9,4 +9,9 @@
       <%= render 'layouts/navigation_links' %>
     </ul>
   </div>
+  <ul class="right">
+    <% if current_user %>
+      <li>Logged in as: <%= @user.username %></li>
+    <% end %>
+  </ul>
 </nav>

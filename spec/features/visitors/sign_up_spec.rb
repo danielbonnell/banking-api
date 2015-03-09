@@ -1,3 +1,6 @@
+include Warden::Test::Helpers
+Warden.test_mode!
+
 feature "Sign Up", %{
   As a user, I want to register an account, so that I can access the app.
   Acceptance Criteria:
@@ -5,9 +8,14 @@ feature "Sign Up", %{
           Geezeo.
   * [X] - I see an error if my credentials are invalid.
   }, :devise do
+
+  before(:each) do
+    Warden.test_reset!
+  end
+
   scenario "visitor can sign up with valid credentials" do
     sign_up_with("test@example.com", "please123", "please123", "danielb")
-    expect(page).to have_content "Username can't be blank"
+    expect(page).to have_content "danielb"
   end
 
   scenario "visitor cannot sign up with invalid email address" do

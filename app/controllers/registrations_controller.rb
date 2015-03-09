@@ -1,4 +1,18 @@
 class RegistrationsController < Devise::RegistrationsController
+  def create
+    @user = User.new
+    @user.attributes = register_params
+
+    respond_to do |format|
+      if @user.save
+        sign_in(@user)
+        format.html { redirect_to root_path }
+      else
+        format.html { render :new }
+      end
+    end
+  end
+
   def update
     update_params = account_update_params
     # required for settings form to submit when password is left blank

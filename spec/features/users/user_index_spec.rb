@@ -55,9 +55,7 @@ feature "User index page", %{
 
     user.account.transactions(user, 1).each do |t|
       expect(page).to have_content Time.parse(t["posted_at"]).strftime("%m/%d/%Y")
-      # expect(page).to have_content number_to_currency(t["balance"])
-      # The line above causes the spec to occasionally fail at random. Need to
-      # investigate further.
+      expect(page).to have_content number_to_currency(t["balance"])
       expect(page).to have_content t["transaction_type"]
       expect(page).to have_content t["original_name"]
       expect(page).to have_content t["memo"]
