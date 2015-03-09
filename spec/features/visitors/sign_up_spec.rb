@@ -18,6 +18,11 @@ feature "Sign Up", %{
     expect(page).to have_content "danielb"
   end
 
+  scenario "visitor cannot sign up with invalid username" do
+    sign_up_with("test@example.com", "please123", "please123", "something")
+    expect(page).to have_content "Username invalid"
+  end
+
   scenario "visitor cannot sign up with invalid email address" do
     sign_up_with("bogus", "please123", "please123", "danielb")
     expect(page).to have_content "Email is invalid"
