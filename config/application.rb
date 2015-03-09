@@ -6,8 +6,6 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-BASE_URI = "https://#{ENV['TOKEN']}@sales.geezeo.com/api/v2"
-
 module Geezeo
   class Application < Rails::Application
 

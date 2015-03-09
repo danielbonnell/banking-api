@@ -52,10 +52,4 @@ feature "Sign Up", %{
     sign_up_with("test@example.com", "please123", "please123", "")
     expect(page).to have_content "Username can't be blank"
   end
-
-  scenario "visitor cannot sign up without a valid API username" do
-    skip "Skipped. Will implement feature in a new branch."
-    sign_up_with("test@example.com", "please123", "please123", "danielb2")
-    expect(page).to have_content "Username not found"
-  end
 end
