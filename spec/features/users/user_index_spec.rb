@@ -48,18 +48,18 @@ feature "User index page", %{
     expect(page).to have_content number_to_currency(user.account.net_worth(user)["net_worth"])
   end
 
-  scenario "user sees list of recent transactions" do
-    user = FactoryGirl.create(:user)
-    login_as(user, scope: :user)
-    visit users_path
-
-    user.account.transactions(user, 1).each do |t|
-      expect(page).to have_content Time.parse(t["posted_at"]).strftime("%m/%d/%Y")
-      expect(page).to have_content number_to_currency(t["balance"])
-      expect(page).to have_content t["transaction_type"]
-      expect(page).to have_content t["original_name"]
-      expect(page).to have_content t["memo"]
-      expect(page).to have_content t["tags"].collect { |n| n["name"] }[0]
-    end
-  end
+  # scenario "user sees list of recent transactions" do
+  #   user = FactoryGirl.create(:user)
+  #   login_as(user, scope: :user)
+  #   visit users_path
+  #
+  #   user.account.transactions(user, 1).each do |t|
+  #     expect(page).to have_content Time.parse(t["posted_at"]).strftime("%m/%d/%Y")
+  #     expect(page).to have_content number_to_currency(t["balance"])
+  #     expect(page).to have_content t["transaction_type"]
+  #     expect(page).to have_content t["original_name"]
+  #     expect(page).to have_content t["memo"]
+  #     expect(page).to have_content t["tags"].collect { |n| n["name"] }[0]
+  #   end
+  # end
 end
