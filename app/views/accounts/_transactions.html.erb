@@ -1,0 +1,10 @@
+<% account.transactions(1).each do |t| %>
+  <tr>
+    <td><%= Time.parse(t["posted_at"]).strftime("%m/%d/%Y") %></td>
+    <td><%= number_to_currency(t["balance"]) %></td>
+    <td><%= t["transaction_type"] %></td>
+    <td><%= t["original_name"] %></td>
+    <td><%= t["memo"] %></td>
+    <td><%= t["tags"].collect { |n| n["name"] }[0] %></td>
+  </tr>
+<% end %>
