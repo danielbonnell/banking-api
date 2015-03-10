@@ -44,7 +44,7 @@ class Account
     @account["fi"]
   end
 
-  def transactions(page)
+  def transactions(page = 1)
     JSON.parse(
       RestClient.get "#{BASE_URI}/users/#{@user.username}/accounts/#{@id}/transactions?page=#{page}"
     )["transactions"]
