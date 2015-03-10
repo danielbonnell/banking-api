@@ -1,0 +1,29 @@
+<div class="large-10 medium-9 small-8 columns full-height">
+  <ul class="pricing-table">
+    <li class="price">
+      <%= @account.name %>
+    </li>
+    <li class="description">
+      Balance: <%= number_to_currency(@account.balance) %>
+      <br />
+      Recent Transactions
+    </li>
+    <li class="description">
+      <%= link_to "< Prev", "#", class: "button tiny", id: "prev" %>
+      <%= link_to "Next >", "#", class: "button tiny", id: "next" %>
+      <table id="recent-transactions">
+        <thead>
+          <th>Posted</th>
+          <th>Amount</th>
+          <th>Type</th>
+          <th>Name</th>
+          <th>Memo</th>
+          <th>Tags</th>
+        </thead>
+        <tbody>
+          <%= render partial: 'transactions', locals: { account: @account }%>
+        </tbody>
+      </table>
+    </li>
+  </ul>
+</div>
