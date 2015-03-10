@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   end
 
   def net_worth(*type)
-    api_call = JSON.parse(RestClient.get "#{BASE_URI}/users/#{self.username}/networth")
+    api_call = JSON.parse(RestClient.get "#{BASE_URI}/users/#{username}/networth")
 
     if !type.empty?
       api_call[type[0]].map do |account|

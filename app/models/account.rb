@@ -1,15 +1,8 @@
 class Account
   require "rest_client"
 
-  attr_reader :user,
-    :id,
-    :name,
-    :balance,
-    :reference_id,
-    :aggregation_type,
-    :account_type,
-    :state,
-    :fi
+  attr_reader :user, :id, :name, :balance, :reference_id,
+              :aggregation_type, :account_type, :state, :fi
 
   def initialize(user, id)
     @user = user
