@@ -14,15 +14,15 @@
         <ul class="large-block-grid-3">
           <li>
             <b>Total Assets: </b>
-            <%= number_to_currency(@user.account.net_worth(@user)["total_assets"]) %>
+            <%= number_to_currency(@user.net_worth["total_assets"]) %>
           </li>
           <li>
             <b>Total Debts: </b>
-            <%= number_to_currency(@user.account.net_worth(@user)["total_debts"]) %>
+            <%= number_to_currency(@user.net_worth["total_debts"]) %>
           </li>
           <li>
             <b>Net Worth: </b>
-            <%= number_to_currency(@user.account.net_worth(@user)["net_worth"]) %>
+            <%= number_to_currency(@user.net_worth["net_worth"]) %>
           </li>
         </ul>
       </div>
@@ -41,7 +41,7 @@
             <th>Tags</th>
           </thead>
           <tbody>
-            <% @user.account.transactions(@user, 1).each do |t| %>
+            <% @user.transactions.each do |t| %>
               <tr>
                 <td><%= Time.parse(t["posted_at"]).strftime("%m/%d/%Y") %></td>
                 <td><%= number_to_currency(t["balance"]) %></td>
@@ -56,7 +56,7 @@
       </div>
     </li>
 
-    <% @user.account.all(@user).each_with_index do |group, i| %>
+    <% @user.accounts.each_with_index do |group, i| %>
       <% unless group[1].empty? %>
         <li class="accordion-navigation">
           <a href="#panel<%= i %>"><%= group[0] %></a>
@@ -66,11 +66,21 @@
                 <% unless account.empty? %>
                   <li>
                     <ul class="pricing-table">
-                      <li class="title"><%= account["name"] %></li>
-                      <li class="description"><%= account["account_type"].capitalize %></li>
-                      <li class="price"><%= number_to_currency(account["balance"]) %></li>
-                      <li class="bullet-item"><%= account["fi"].nil? ? "FI Name Unknown" : account["fi"]["name"] %></li>
-                      <li class="cta-button"><%= link_to "View Account", account_path(account["id"]), class: "tiny button" %></li>
+                      <li class="title">
+                        <%= account["name"] %>
+                      </li>
+                      <li class="description">
+                        <%= account["account_type"].capitalize %>
+                      </li>
+                      <li class="price">
+                        <%= number_to_currency(account["balance"]) %>
+                      </li>
+                      <li class="bullet-item">
+                        <%= account["fi"].nil? ? "FI Name Unknown" : account["fi"]["name"] %>
+                      </li>
+                      <li class="cta-button">
+                        <%= link_to "View Account", account_path(account["id"]), class: "tiny button" %>
+                      </li>
                     </ul>
                   </li>
                 <% end %>
@@ -83,5 +93,4 @@
   </ul>
 </div>
 
-<%= javascript_include_tag "https://code.highcharts.com/highcharts.js" %>
 <%= javascript_include_tag "account_overview" %>

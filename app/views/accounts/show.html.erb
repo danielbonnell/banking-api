@@ -1,1 +1,13 @@
-<%= @account %>
+<% content_for :title, "Geezeo: Logged in as #{current_user.username}" %>
+<div class="row collapse full-width">
+  <div class="large-2 medium-3 small-4 columns full-height side-bar">
+    <%= image_tag "http://developers.geezeo.com/images/big-g.png" %>
+    <ul class="side-nav">
+      <li><%= link_to "Account Overview", root_path, class: "button expand" %></li>
+      <li><%= link_to "Spending Analysis", "#", class: "button expand" %></li>
+      <li><%= link_to "Add Account", "#", class: "button expand" %></li>
+    </ul>
+  </div>
+
+  <%= render 'account' %>
+</div>

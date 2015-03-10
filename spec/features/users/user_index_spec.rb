@@ -23,7 +23,7 @@ feature "User index page", %{
     login_as(user, scope: :user)
     visit users_path
 
-    user.account.all(user).each do |account|
+    user.accounts.each do |account|
       expect(page).to have_content account[0]["name"] unless account[0].empty?
     end
   end
@@ -33,7 +33,7 @@ feature "User index page", %{
     login_as(user, scope: :user)
     visit users_path
 
-    user.account.all(user).each do |account|
+    user.accounts.each do |account|
       expect(page).to have_content account[0]["balance"] unless account[0].empty?
     end
   end
@@ -43,9 +43,9 @@ feature "User index page", %{
     login_as(user, scope: :user)
     visit users_path
 
-    expect(page).to have_content number_to_currency(user.account.net_worth(user)["total_assets"])
-    expect(page).to have_content number_to_currency(user.account.net_worth(user)["total_debts"])
-    expect(page).to have_content number_to_currency(user.account.net_worth(user)["net_worth"])
+    expect(page).to have_content number_to_currency(user.net_worth["total_assets"])
+    expect(page).to have_content number_to_currency(user.net_worth["total_debts"])
+    expect(page).to have_content number_to_currency(user.net_worth["net_worth"])
   end
 
   # scenario "user sees list of recent transactions" do
@@ -53,7 +53,7 @@ feature "User index page", %{
   #   login_as(user, scope: :user)
   #   visit users_path
   #
-  #   user.account.transactions(user, 1).each do |t|
+  #   user.transactions.each do |t|
   #     expect(page).to have_content Time.parse(t["posted_at"]).strftime("%m/%d/%Y")
   #     expect(page).to have_content number_to_currency(t["balance"])
   #     expect(page).to have_content t["transaction_type"]

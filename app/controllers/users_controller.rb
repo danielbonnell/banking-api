@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
-    gon.assets = @user.account.balance(@user, "assets")
-    gon.debts = @user.account.balance(@user, "debts")
+    gon.assets = @user.net_worth("assets")
+    gon.debts = @user.net_worth("debts")
   end
 
   def show
