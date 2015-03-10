@@ -3,7 +3,7 @@ Banking API Dashboard
 [![Build Status](https://magnum.travis-ci.com/danielbonnell/banking-api.svg?token=UobkAdyZA1SqXorqM6AB&branch=master)](https://magnum.travis-ci.com/danielbonnell/banking-api)
 [![Code Climate](https://codeclimate.com/repos/54f91bc5e30ba075e2000199/badges/cfda0bb123ec6b4825eb/gpa.svg)](https://codeclimate.com/repos/54f91bc5e30ba075e2000199/feed)
 [![Test Coverage](https://codeclimate.com/repos/54f91bc5e30ba075e2000199/badges/cfda0bb123ec6b4825eb/coverage.svg)](https://codeclimate.com/repos/54f91bc5e30ba075e2000199/feed)
-[![Coverage Status](https://coveralls.io/repos/danielbonnell/banking-api/badge.png)](https://coveralls.io/r/danielbonnell/banking-api)
+
 
 This app allows a user to register an account and access a banking API, provided they have been given the credentials. The app displays a dashboard style overview of the user's accounts, the balance of each account, and a list of recent transactions. A user can click on an account to access a list of transactions for that account. Once the basic features are implemented I plan to use jQuery to streamline the UI and HighCharts.JS for account analytics. I may add other features if time allows.
 
