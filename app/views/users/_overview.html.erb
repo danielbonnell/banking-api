@@ -41,7 +41,7 @@
             <th>Tags</th>
           </thead>
           <tbody>
-            <%= render partial: '/accounts/transactions', locals: { account: @user }%>
+            <%= render partial: '/accounts/transactions', locals: { transactions: @user.transactions }%>
           </tbody>
         </table>
       </div>

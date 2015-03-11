@@ -1,4 +1,4 @@
-<% account.transactions(1).each do |t| %>
+<% transactions.each do |t| %>
   <tr>
     <td><%= Time.parse(t.fetch("posted_at")).strftime("%m/%d/%Y") %></td>
     <td><%= number_to_currency(t.fetch("balance")) %></td>

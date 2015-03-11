@@ -3,5 +3,11 @@ class AccountsController < ApplicationController
 
   def show
     @account = Account.new(current_user, params[:id])
+
+    if params[:page]
+      @transactions = @account.transactions(params[:page])
+    else
+      @transactions = @account.transactions
+    end
   end
 end
