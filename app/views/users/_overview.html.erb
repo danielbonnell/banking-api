@@ -14,15 +14,15 @@
         <ul class="large-block-grid-3">
           <li>
             <b>Total Assets: </b>
-            <%= number_to_currency(@user.net_worth["total_assets"]) %>
+            <%= number_to_currency(@user.net_worth.fetch("total_assets")) %>
           </li>
           <li>
             <b>Total Debts: </b>
-            <%= number_to_currency(@user.net_worth["total_debts"]) %>
+            <%= number_to_currency(@user.net_worth.fetch("total_debts")) %>
           </li>
           <li>
             <b>Net Worth: </b>
-            <%= number_to_currency(@user.net_worth["net_worth"]) %>
+            <%= number_to_currency(@user.net_worth.fetch("net_worth")) %>
           </li>
         </ul>
       </div>
@@ -50,7 +50,7 @@
     <% @user.accounts.each_with_index do |group, i| %>
       <% unless group[1].empty? %>
         <li class="accordion-navigation">
-          <a href="#panel<%= i %>"><%= group[0] %></a>
+          <a href="#panel<%= i %>"><%= group.first %></a>
           <div id="panel<%= i %>" class="content">
             <ul class="large-block-grid-4 medium-block-grid-3 small-block-grid-1">
               <% group[1].each do |account| %>
@@ -58,19 +58,19 @@
                   <li>
                     <ul class="pricing-table">
                       <li class="title">
-                        <%= account["name"] %>
+                        <%= account.fetch("name") %>
                       </li>
                       <li class="description">
-                        <%= account["account_type"].capitalize %>
+                        <%= account.fetch("account_type").capitalize %>
                       </li>
                       <li class="price">
-                        <%= number_to_currency(account["balance"]) %>
+                        <%= number_to_currency(account.fetch("balance")) %>
                       </li>
                       <li class="bullet-item">
-                        <%= account["fi"].nil? ? "FI Name Unknown" : account["fi"]["name"] %>
+                        <%= account.fetch("fi").nil? ? "FI Name Unknown" : account.fetch("fi").fetch("name") %>
                       </li>
                       <li class="cta-button">
-                        <%= link_to "View Account", account_path(account["id"]), class: "tiny button" %>
+                        <%= link_to "View Account", account_path(account.fetch("id")), class: "tiny button" %>
                       </li>
                     </ul>
                   </li>

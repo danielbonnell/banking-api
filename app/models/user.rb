@@ -9,11 +9,11 @@ class User < ActiveRecord::Base
     output = {}
     api_call = JSON.parse(
       RestClient.get "#{BASE_URI}/users/#{self.username}/accounts/all"
-    )["accounts"]
+    ).fetch("accounts")
 
     groups.map do |group|
       output[group[0]] = api_call.dup.keep_if do |account|
-        group[1].include?(account["account_type"])
+        group[1].include?(account.fetch("account_type"))
       end
     end
 
@@ -25,27 +25,27 @@ class User < ActiveRecord::Base
 
     if !type.empty?
       api_call[type[0]].map do |account|
-        [account["name"], account["balance"].to_f]
+        [account.fetch("name"), account.fetch("balance").to_f]
       end
     else
-      api_call["meta"]
+      api_call.fetch("meta")
     end
   end
 
   def transactions(page=1)
     JSON.parse(
       RestClient.get "#{BASE_URI}/users/#{self.username}/transactions?page=#{page}"
-    )["transactions"][0..9]
+    ).fetch("transactions")[0..9]
   end
 
   protected
 
   def valid_usernames
-    api_call = JSON.parse(RestClient.get "#{BASE_URI}/users/")["users"]
+    api_call = JSON.parse(RestClient.get "#{BASE_URI}/users/").fetch("users")
     output = []
 
     api_call.each do |user|
-      output << user["login"] unless user["login"].nil?
+      output << user.fetch("login") unless user.fetch("login").nil?
     end
 
     output

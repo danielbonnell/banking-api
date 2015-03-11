@@ -9,7 +9,7 @@ class Account
     @id = id
     @account = JSON.parse(
       RestClient.get "#{BASE_URI}/users/#{user.username}/accounts/#{id}"
-    )["accounts"][0]
+    ).fetch("accounts").first
   end
 
   # I have been trying to figure out how to refactor this model into something
@@ -17,36 +17,36 @@ class Account
   # methods dynamically, but I don't know how to do that yet.
 
   def name
-    @account["name"]
+    @account.fetch("name")
   end
 
   def balance
-    @account["balance"]
+    @account.fetch("balance")
   end
 
   def reference_id
-    @account["reference_id"]
+    @account.fetch("reference_id")
   end
 
   def aggregation_type
-    @account["aggregation_type"]
+    @account.fetch("aggregation_type")
   end
 
   def account_type
-    @account["account_type"]
+    @account.fetch("account_type")
   end
 
   def state
-    @account["state"]
+    @account.fetch("state")
   end
 
   def fi
-    @account["fi"]
+    @account.fetch("fi")
   end
 
   def transactions(page = 1)
     JSON.parse(
       RestClient.get "#{BASE_URI}/users/#{@user.username}/accounts/#{@id}/transactions?page=#{page}"
-    )["transactions"]
+    ).fetch("transactions")
   end
 end
