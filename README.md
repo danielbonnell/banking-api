@@ -21,6 +21,10 @@ Here is are some highlights of what I worked on each day.
 #### 03/11/15
 * Update README with screenshots of app
 * Added unit tests for all user and account methods
+* Refactored accounts model for 2nd time
+* Refactored account unit tests
+* Added pagination for account transactions
+* Added method in application controller to verify API connectivity
 * Deployed latest build to Heroku
 
 #### 03/10/15
