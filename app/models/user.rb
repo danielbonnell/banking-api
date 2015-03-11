@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
       RestClient.get "#{BASE_URI}/users/#{self.username}/accounts/all"
     ).fetch("accounts")
 
+    # Group accounts by type for display in overview page
     groups.map do |group|
       output[group[0]] = api_call.dup.keep_if do |account|
         group[1].include?(account.fetch("account_type"))
@@ -24,15 +25,18 @@ class User < ActiveRecord::Base
     api_call = JSON.parse(RestClient.get "#{BASE_URI}/users/#{username}/networth")
 
     if !type.empty?
+      # Return an array of account names and balances for use with HighCharts
       api_call[type[0]].map do |account|
         [account.fetch("name"), account.fetch("balance").to_f]
       end
     else
+      # Return a hash with total_debts, total_assets, and net_worth
       api_call.fetch("meta")
     end
   end
 
-  def transactions(page=1)
+  def transactions(page = 1)
+    # Limit 10 transactions for overview
     JSON.parse(
       RestClient.get "#{BASE_URI}/users/#{self.username}/transactions?page=#{page}"
     ).fetch("transactions")[0..9]
@@ -41,14 +45,10 @@ class User < ActiveRecord::Base
   protected
 
   def valid_usernames
-    api_call = JSON.parse(RestClient.get "#{BASE_URI}/users/").fetch("users")
-    output = []
-
-    api_call.each do |user|
-      output << user.fetch("login") unless user.fetch("login").nil?
+    # Check API to see if username is registered
+    JSON.parse(RestClient.get "#{BASE_URI}/users/").fetch("users").map do |user|
+      user.fetch("login") unless user.fetch("login").nil?
     end
-
-    output
   end
 
   private

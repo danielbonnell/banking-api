@@ -1,8 +1,6 @@
 class Account
   require "rest_client"
-
-  attr_reader :user, :id, :name, :balance, :reference_id,
-              :aggregation_type, :account_type, :state, :fi
+  attr_reader :user, :id
 
   def initialize(user, id)
     @user = user
@@ -12,36 +10,9 @@ class Account
     ).fetch("accounts").first
   end
 
-  # I have been trying to figure out how to refactor this model into something
-  # more DRY and expresive. I want to figure out how to generate the instance
-  # methods dynamically, but I don't know how to do that yet.
-
-  def name
-    @account.fetch("name")
-  end
-
-  def balance
-    @account.fetch("balance")
-  end
-
-  def reference_id
-    @account.fetch("reference_id")
-  end
-
-  def aggregation_type
-    @account.fetch("aggregation_type")
-  end
-
-  def account_type
-    @account.fetch("account_type")
-  end
-
-  def state
-    @account.fetch("state")
-  end
-
-  def fi
-    @account.fetch("fi")
+  def property(type)
+    # Fetch an account property (e.g. name, balance, etc.)
+    @account.fetch(type)
   end
 
   def transactions(page = 1)
